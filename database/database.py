@@ -39,7 +39,7 @@ def new_user(id):
 
 class Rohit:
 
-    def __init__(self, DB_URI, DB_NAME):
+    def __init__(self, DB_URI, DB_NAME, TG_BOT_TOKEN):
         self.dbclient = motor.motor_asyncio.AsyncIOMotorClient(DB_URI)
         self.database = self.dbclient[DB_NAME]
 
