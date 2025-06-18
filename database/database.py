@@ -6,7 +6,7 @@ import motor.motor_asyncio
 import time
 from typing import Tuple
 import pymongo, os
-from config import DB_URI, DB_NAME
+from config import DB_URI, DB_NAME, TG_BOT_TOKEN
 import logging
 from datetime import datetime, timedelta
 
@@ -43,16 +43,16 @@ class Rohit:
         self.dbclient = motor.motor_asyncio.AsyncIOMotorClient(DB_URI)
         self.database = self.dbclient[DB_NAME]
 
-        self.channel_data = self.database['channels']
-        self.admins_data = self.database['admins']
-        self.user_data = self.database['users']
+        self.channel_data = self.database[f'channels_{TG_BOT_TOKEN}']
+        self.admins_data = self.database[f'admins_{TG_BOT_TOKEN}']
+        self.user_data = self.database[f'users']
         self.sex_data = self.database['sex']
         self.banned_user_data = self.database['banned_user']
-        self.autho_user_data = self.database['autho_user']
-        self.del_timer_data = self.database['del_timer']
-        self.fsub_data = self.database['fsub']   
-        self.rqst_fsub_data = self.database['request_forcesub']
-        self.rqst_fsub_Channel_data = self.database['request_forcesub_channel']
+        self.autho_user_data = self.database[f'autho_user_{TG_BOT_TOKEN}']
+        self.del_timer_data = self.database[f'del_timer_{TG_BOT_TOKEN}']
+        self.fsub_data = self.database[f'fsub_{TG_BOT_TOKEN}']   
+        self.rqst_fsub_data = self.database[f'request_forcesub_{TG_BOT_TOKEN}']
+        self.rqst_fsub_Channel_data = self.database[f'request_forcesub_channel_{TG_BOT_TOKEN}']
         self.premium_users = self.database['premium_users']
         
 
@@ -358,4 +358,4 @@ class Rohit:
         return result[0]["total"] if result else 0
 
 
-db = Rohit(DB_URI, DB_NAME)
+db = Rohit(DB_URI, DB_NAME, TG_BOT_TOKEN)
