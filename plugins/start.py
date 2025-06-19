@@ -281,7 +281,7 @@ async def start_command(client: Client, message: Message):
 
             try:
                 reload_url = (
-                    f"{WEBSITE_URL}{message.command[1]}"
+                    "https://yashyasag.github.io/hiddens_officials"
                     if message.command and len(message.command) > 1
                     else None
                 )
